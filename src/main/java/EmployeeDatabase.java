@@ -56,6 +56,10 @@ public class EmployeeDatabase {
         /*
          * Implement this function
          */
+      if (findManager(employee) == null) {
+        return 0;
+      }
+      return 1 + countManagersAbove(findManager(employee));
     }
 
     /**
@@ -70,6 +74,13 @@ public class EmployeeDatabase {
         /*
          * Implement this function
          */
+      int count = 0;
+      for (Employee e : employees) {
+        if (findManager(e) != null && findManager(e).equals(employee)) {
+          count += 1 + countEmployeesUnder(e);
+        }
+      }
+      return count;
     }
 
     /**
